@@ -12,23 +12,23 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                echo 'Cloning repository...'
-                git branch: 'main', credentialsId: 'your-github-credentials-id', url: 'https://github.com/your/repository.git'
+                echo 'Inside Clone'
+                git branch: 'main', url: 'https://github.com/ankitr-c/appengine-cicd.git'
             }
         }
 
         stage('Authenticate') {
             steps {
-                echo 'Authenticating with Google Cloud...'
-                withCredentials([googleServiceAccount(credentialsId: 'your-gcp-credentials-id', project: 'your-project-id')]) {
-                    sh 'gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}'
+                echo 'Inside Authenticate'
+                withCredentials([file(credentialsId: 'cloudrun-cicd', variable: 'cred')]) {
+                    sh "gcloud auth activate-service-account --key-file=${cred}"
                 }
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying to Google App Engine...'
+                echo 'Inside Deploy'
                 sh "gcloud app deploy --image-url=${params.IMAGE_URL} --version=${params.VERSION} --project=${params.PROJECT_ID} --region=${params.REGION} --service=${params.SERVICE} --quiet"
             }
         }
