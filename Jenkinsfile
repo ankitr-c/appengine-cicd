@@ -30,7 +30,7 @@ pipeline {
             steps {
                 echo 'Inside Deploy'
                 // sh "gcloud app deploy app.yml --image-url=${params.IMAGE_URL} --version=${params.VERSION} --project=${params.PROJECT_ID} --region=${params.REGION} --service=${params.SERVICE} --quiet"
-                sh "gcloud app deploy app.yml --image-url=${params.IMAGE_URL} --quiet"
+                sh "gcloud app deploy app.yaml --image-url=${params.IMAGE_URL} --quiet"
             }
         }
     }
