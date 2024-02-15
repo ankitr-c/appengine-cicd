@@ -20,7 +20,7 @@ pipeline {
         stage('Authenticate') {
             steps {
                 echo 'Inside Authenticate'
-                withCredentials([file(credentialsId: 'appengine-cicd', variable: 'cred')]) {
+                withCredentials([file(credentialsId: 'appengine-cicd2', variable: 'cred')]) {
                     sh "gcloud auth activate-service-account --key-file=${cred}"
                 }
             }
