@@ -22,6 +22,7 @@ pipeline {
                 echo 'Inside Authenticate'
                 withCredentials([file(credentialsId: 'appengine-cicd2', variable: 'cred')]) {
                     sh "gcloud auth activate-service-account --key-file=${cred}"
+                    sh 'gcloud config list'
                 }
             }
         }
