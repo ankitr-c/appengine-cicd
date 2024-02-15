@@ -1,4 +1,9 @@
+# runtime: python39
+# handlers:
+# - url: /.*
+#   script: auto
+
+
 runtime: python39
-handlers:
-- url: /.*
-  script: auto
+env: flex
+service: image-app

@@ -1,0 +1,1 @@
+gcloud app deploy --image-url=us-docker.pkg.dev/practical-414209/test/calc-app
