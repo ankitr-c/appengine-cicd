@@ -6,17 +6,17 @@ pipeline {
     }
 
     stages {
-        stage('Clone') {
-            steps {
-                echo 'Inside Clone'
-                git branch: 'main', url: 'https://github.com/ankitr-c/appengine-cicd.git'
-            }
-        }
+        // stage('Clone') {
+        //     steps {
+        //         echo 'Inside Clone'
+        //         git branch: 'main', url: 'https://github.com/ankitr-c/appengine-cicd.git'
+        //     }
+        // }
 
         stage('Authenticate') {
             steps {
                 echo 'Inside Authenticate'
-                withCredentials([file(credentialsId: 'appengine-cicd2', variable: 'cred')]) {
+                withCredentials([file(credentialsId: 'cicd-key', variable: 'cred')]) {
                     sh "gcloud auth activate-service-account --key-file=${cred}"
                     sh 'gcloud config list'
                 }
